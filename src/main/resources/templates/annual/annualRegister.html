@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/layout}">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Goal Trail</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+</head>
+
+<body>
+	<div class="container-md mt-5" layout:fragment="contents">
+		<header class="masthead">
+			<div class="container px-4 px-lg-5 h-100">
+				<div class="p-3 mb-2 bg-secondary text-white">
+					<div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
+						<div class="col-lg-8 align-self-end">
+							<h1 class="text-white font-weight-bold">Annual Goals</h1>
+							<hr class="divider" />
+						</div>
+						<div class="col-lg-8 align-self-baseline">
+							<p class="text-white-80">今年の目標を3つ設定しましょう。もし難しい場合は以下を参考にしてみてください。</p>
+							<br>
+							<p class="text-white-80 mb-1">①未来の自分を想像する</p>
+							<p class="text-white-80 mb-1">自分が1年後にどのような人になっていたいか、どのような状態でいたいかを想像してみてください。</p>
+							<p class="text-white-80 mb-1">周りの人と比べず、あなた自身の理想を大切にしてください。</p>
+							<br>
+							<p class="text-white-80 mb-1">②少し背伸びした目標にする。</p>
+							<p class="text-white-80 mb-1">過度に高すぎず、届くか届かないかレベルの目標を設定しましょう。</p>
+							<p class="text-white-80 mb-1">達成することが容易な目標でも、やりがいがなくなってしまうので少しの背伸びを目指しましょう。</p>
+							<br>
+							<p class="text-white-80 mb-1">③分野を分ける</p>
+							<p class="text-white-80 mb-1">お仕事や健康、自己研鑽、趣味など分野をわけてみてください。</p>
+							<p class="text-white-80 mb-1">多方向から考えることによって、整理がしやすくなります。</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div class="row gx-4 gx-lg-5 justify-content-center mb-5">
+			<div class="col-md-6 mt-3">
+				<form id="contactForm" method="post" th:action="@{/annual/annualRegister}" th:object="${form}">
+					<div class="row gx-4 gx-lg-5 justify-content-center">
+						<div class="col-md-3">
+							<input class="form-control" id="year" name="year" type="number" min="1000" max="9999"
+								th:field="*{year}" required oninvalid="this.setCustomValidity('西暦4桁を半角で入力してください')"
+								oninput="this.setCustomValidity('')"/>
+						</div>
+						<div class="col-md-3">
+							<h2>年目標</h2>
+						</div>
+					</div>
+					<div class="form-floating mb-3 mt-3">
+						<input class="form-control" id="annualGoal1" name="annualGoal1" th:field="*{annualGoal1}"
+							type="text" placeholder="1. Annual Goal" required oninvalid="this.setCustomValidity('目標を入力してください')"
+							oninput="this.setCustomValidity('')"/>
+						<label for="annualGoal1">1. Annual Goal</label>
+					</div>
+					<div class="form-floating mb-3">
+						<input class="form-control" id="annualGoal2" name="annualGoal2" th:field="*{annualGoal2}"
+							type="text" placeholder="2. Annual Goal" required oninvalid="this.setCustomValidity('目標を入力してください')"
+							oninput="this.setCustomValidity('')"/>
+						<label for="annualGoal2">2. Annual Goal</label>
+					</div>
+					<div class="form-floating mb-3">
+						<input class="form-control" id="annualGoal3" name="annualGoal3" th:field="*{annualGoal3}"
+							type="text" placeholder="3. Annual Goal" required oninvalid="this.setCustomValidity('目標を入力してください')"
+							oninput="this.setCustomValidity('')"/>
+						<label for="annualGoal3">3. Annual Goal</label>
+					</div>
+					<div class="d-grid">
+						<button class="btn btn-secondary btn-xl" id="submitButton" type="submit">年間目標登録</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

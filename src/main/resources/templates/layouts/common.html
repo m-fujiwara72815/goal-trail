@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<body>
+	<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark" layout:fragment="nav">
+		<div class="container">
+			<a class="navbar-brand">Goal Trail</a>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav ms-auto">
+					<th:block th:if="${loggedIn}">
+						<a th:href="@{/logout}" class="nav-link convert" data-method="post"
+                                th:data-_csrf="${_csrf.token}">Log out</a>
+					</th:block>
+					<th:block th:if="${!loggedIn}">
+						<a class="nav-link convert" th:href="@{/users/new}">Sign in</a>
+						<a class="nav-link convert" th:href="@{/sessions/new}">Log in</a>
+					</th:block>	
+				</ul>
+				
+			</div>
+		</div>
+	</nav>
+	<div id="messages" layout:fragment="messages" th:if="!${#lists.isEmpty(#fields.detailedErrors())}">
+		<ul>
+			<li th:each="error : ${#fields.detailedErrors()}" class="error-message" th:text="${error.message}" />
+		</ul>
+	</div>
+</body>
+
+</html>
